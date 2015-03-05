@@ -29,44 +29,48 @@
         <h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to the next Zan.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>This automatic page generator generates the currently time for the next Zan.</p>
 
-<script type="text/javascript">
+<script>
+var end = new Date('03/05/2015 10:00 PM');
 
-function cdtd() {
-	var xmas = new Date("March 5, 2015 22:00:00");
-	var now = new Date();
-	var timeDiff = xmas.getTime() - now.getTime();
-	if (timeDiff <= 0) {
-                clearTimeout(timer);
-		document.write("Christmas is here!");
-		// Run any code needed for countdown completion here
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+            _day += 7
+
+            return;
         }
-	var seconds = Math.floor(timeDiff / 1000);
-	var minutes = Math.floor(seconds / 60);
-	var hours = Math.floor(minutes / 60);
-	var days = Math.floor(hours / 24);
-	hours %= 24;
-        minutes %= 60;
-        seconds %= 60;
-	document.getElementById("daysBox").innerHTML = days;
-	document.getElementById("hoursBox").innerHTML = hours;
-	document.getElementById("minsBox").innerHTML = minutes;
-	document.getElementById("secsBox").innerHTML = seconds;
-	var timer = setTimeout('cdtd()',1000);
-}
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+    }
+
+    timer = setInterval(showRemaining, 1000);
 </script>
 
 
-Days Remaining:
-<div id="daysBox"></div>
-Hours Remaining:
-<div id="hoursBox"></div>
-Minutes Remaining:
-<div id="minsBox"></div>
-Seconds Remaining:
-<div id="secsBox"></div>
-<script>cdtd();</script>
+<h1>
+	<div id="countdown"> </div>
+</h1>
+
+
 </section>
 </div>
     <!-- FOOTER  -->
