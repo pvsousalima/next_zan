@@ -7,17 +7,10 @@
     <meta name="description" content="Next zan : ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-  
     <title>Next Zan generator</title>
-
-
   </head>
 
   <body>
-
-
-
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
@@ -44,8 +37,13 @@
 
 var dataList = new Array();
 dataList.push('03/05/2015 10:00 PM')
+dataList.push('03/12/2015 10:00 PM')
+dataList.push('03/19/2015 10:00 PM')
 
-var end = new Date(dataList[0]);
+
+var pos = 1
+
+var end = new Date(dataList[pos]);
 
     var _second = 1000;
     var _minute = _second * 60;
@@ -60,7 +58,7 @@ var end = new Date(dataList[0]);
 
             clearInterval(timer);
             document.getElementById('countdown').innerHTML = 'EXPIRED!';
-            _day += 7
+            pos++
 
             return;
         }
