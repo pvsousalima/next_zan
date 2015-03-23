@@ -36,7 +36,14 @@
 <script>
 
 var dataList = new Array();
-dataList.push('03/19/2015 10:00 PM')
+dataList.push('03/26/2015 10:00 PM')
+dataList.push('04/02/2015 10:00 PM')
+dataList.push('04/09/2015 10:00 PM')
+dataList.push('04/16/2015 10:00 PM')
+dataList.push('04/23/2015 10:00 PM')
+dataList.push('04/30/2015 10:00 PM')
+dataList.push('05/07/2015 10:00 PM')
+dataList.push('05/14/2015 10:00 PM')
 
 var pos = 0
 
@@ -51,33 +58,50 @@ var end = new Date(dataList[pos]);
     function showRemaining() {
         var now = new Date();
         var distance = end - now;
+
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById('countdown').innerHTML = 'EXPIRED!';
-            pos++
 
-            return;
+
+            while(distance < 0) {
+              pos++
+              end = new Date(dataList[pos])
+              now = new Date();
+              distance = end - now;
+            }
+
+          var days = Math.floor(distance / _day);
+          var hours = Math.floor((distance % _day) / _hour);
+          var minutes = Math.floor((distance % _hour) / _minute);
+          var seconds = Math.floor((distance % _minute) / _second);
+
+          document.getElementById('countdown').innerHTML = days + ' days ';
+          document.getElementById('countdown').innerHTML += hours + 'hrs ';
+          document.getElementById('countdown').innerHTML += minutes + 'mins ';
+          document.getElementById('countdown').innerHTML += seconds + 'secs';
+          document.getElementById('countdown').innerHTML += 'left ' + dataList.length;
+        }else{
+
+          var days = Math.floor(distance / _day);
+          var hours = Math.floor((distance % _day) / _hour);
+          var minutes = Math.floor((distance % _hour) / _minute);
+          var seconds = Math.floor((distance % _minute) / _second);
+
+          document.getElementById('countdown').innerHTML = days + ' days ';
+          document.getElementById('countdown').innerHTML += hours + 'hrs ';
+          document.getElementById('countdown').innerHTML += minutes + 'mins ';
+          document.getElementById('countdown').innerHTML += seconds + 'secs';
         }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        document.getElementById('countdown').innerHTML = days + ' days ';
-        document.getElementById('countdown').innerHTML += hours + 'hrs ';
-        document.getElementById('countdown').innerHTML += minutes + 'mins ';
-        document.getElementById('countdown').innerHTML += seconds + 'secs';
     }
     timer = setInterval(showRemaining, 0);
 </script>
 
+
 <h1>
 	<div id="countdown"></div>
 	untill the next Zan
-
 </h1>
-
 
 
 <iframe src="https://embed.spotify.com/?uri=spotify:user:12146496083:playlist:4fiFj8QmMaKZPfOk0ACr9u" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
