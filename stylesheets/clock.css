@@ -19,12 +19,12 @@
 }
 
 .clock {
-    width: 800px;
+    width: 400px;
+
+   /* border: 1px solid #333;
+    color: #fff;
     margin: 0 auto;
     padding: 30px;
-   /* border: 1px solid #333;*/
-    color: #fff;
-
     /*added*/
 
 }
